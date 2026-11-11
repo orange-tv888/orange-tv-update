@@ -289,7 +289,7 @@ curl -fsSL https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/
 BUILD=1 KEEP_ADB=1 TV=<电视IP> tools/install.sh
 ```
 
-代码结构见 [ARCHITECTURE.md](docs/ARCHITECTURE.md)，现状和规则见 [HANDOFF.md](docs/HANDOFF.md)，各机型笔记在 [docs/devices/](docs/devices/)。
+各机型的实测笔记在 [docs/devices/](docs/devices/)；轻量版说明见 [LITE.md](docs/LITE.md)。源码与开发文档不随本仓公开。
 
 ## 许可
 

@@ -291,7 +291,7 @@ Needs JDK 17 and Android SDK 36.
 BUILD=1 KEEP_ADB=1 TV=<TV-IP> tools/install.sh
 ```
 
-See [ARCHITECTURE.md](docs/ARCHITECTURE.md) for the code, [HANDOFF.md](docs/HANDOFF.md) for the current state and rules, and [docs/devices/](docs/devices/) for notes on each TV.
+Per-device notes are in [docs/devices/](docs/devices/) and the Lite build in [LITE.md](docs/LITE.md). Source and developer docs are not public.(docs/devices/) for notes on each TV.
 
 ## License
 
