@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <!-- Same mark as docs/brand/icon.svg, but at 32 px the safe zone is dropped: the mark is
+       scaled 32/72 so it fills the tile, otherwise it would sit at half size in a favicon. -->
+  <rect width="32" height="32" rx="7" fill="#EEEDEB"/>
+  <path d="M6.84 18.01a9.19 9.19 0 1 0 18.38 0a9.19 9.19 0 1 0 -18.38 0"
+        fill="none" stroke="#FEB05D" stroke-width="3.14"/>
+  <path d="M16.12 7.4V4.07" fill="none" stroke="#5A5957" stroke-width="1.68" stroke-linecap="round"/>
+  <path d="M16.12 5.01c.76-.47 1.88-.6 2.99-.6.89 0 1.47.09 1.78.2"
+        fill="none" stroke="#5A5957" stroke-width="1.68" stroke-linecap="round"/>
+</svg>

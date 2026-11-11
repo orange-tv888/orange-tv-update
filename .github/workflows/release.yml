@@ -1,0 +1,78 @@
+name: Publish Orange release
+
+# Every push to main publishes (or refreshes) the Release for the version in
+# update/version.json. One Release per version; /releases/latest always points
+# at the newest one, which is what the TV's setup QR code links to.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: orange-release
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Read version and build release notes
+        id: meta
+        run: |
+          python3 - <<'PY'
+          import json, os
+          with open('update/version.json', encoding='utf-8') as f:
+              data = json.load(f)
+          ver = str(data['version']).strip()
+          notes = data.get('notes') or []
+          lines = ['## 本版更新']
+          for item in notes[:4]:
+              text = item.get('text', '') if isinstance(item, dict) else str(item)
+              text = text.strip()
+              if text:
+                  lines.append('- ' + text)
+          if len(lines) == 1:
+              lines.append('- 见控制中心「关于与更新」')
+          lines += [
+              '',
+              '## 安装',
+              '下载下方 `orange.apk` → U 盘或「小米电视助手」传到电视 → 允许未知来源 → 安装并设为默认桌面。',
+              '已装过的电视：控制中心 → 关于与更新 → 检查更新，可直接升级。',
+              '',
+              'Windows / macOS / Linux 上也可以插着 ADB 一键安装：',
+              '`curl -fsSL https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/tools/get.sh | TV=<电视IP> bash`',
+              '',
+              '安装前请读 [安装指引](https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/agent.md)。',
+          ]
+          with open('release-notes.md', 'w', encoding='utf-8') as f:
+              f.write('\n'.join(lines) + '\n')
+          with open(os.environ['GITHUB_OUTPUT'], 'a', encoding='utf-8') as f:
+              f.write('ver=' + ver + '\n')
+          PY
+
+      - name: Create or refresh the Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VER: ${{ steps.meta.outputs.ver }}
+        run: |
+          set -euo pipefail
+          TAG="v${VER}"
+          cp update/orange.apk orange.apk
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; refreshing its notes and APK"
+            gh release edit "$TAG" --title "Orange ${VER}" --notes-file release-notes.md
+            gh release upload "$TAG" orange.apk --clobber
+          else
+            echo "Creating Release $TAG"
+            gh release create "$TAG" orange.apk \
+              --target "${GITHUB_SHA}" \
+              --title "Orange ${VER}" \
+              --notes-file release-notes.md
+          fi
+          echo "--- published ---"
+          gh release view "$TAG" --json url,tagName --jq '"\(.tagName)  \(.url)"'
