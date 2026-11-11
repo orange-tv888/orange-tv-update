@@ -48,6 +48,9 @@ jobs:
               '`curl -fsSL https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/tools/get.sh | TV=<电视IP> bash`',
               '',
               '安装前请读 [安装指引](https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/agent.md)。',
+              '指引打不开时用 https://ghfast.top/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/agent.md',
+              '',
+              '**让 Agent 装**：把本页链接，连同「请按上面的安装指引把 Orange 装到我的电视（IP：<电视IP>），完成后把验收的原始输出贴给我」，一起发给**能在电脑上运行命令**的 Agent（WorkBuddy、Claude Code、Trae、豆包电脑版等）。手机或网页版聊天只会列步骤，不会执行命令。',
           ]
           with open('release-notes.md', 'w', encoding='utf-8') as f:
               f.write('\n'.join(lines) + '\n')

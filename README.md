@@ -84,7 +84,7 @@ adb connect 192.168.1.20:39201   # 无线调试主页面上的另一组 IP:端�
 保持 ADB 常开：要
 
 安装说明在这里：https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/agent.md
-（打不开时用 https://cdn.jsdelivr.net/gh/orange-tv888/orange-tv-update@main/site/agent.md ）
+（打不开时用 https://ghfast.top/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/agent.md ）
 
 请先完整读完安装说明再动手，然后在我的电脑上亲自运行命令，不要只把步骤告诉我。需要我在电视上操作时提醒我。
 最后按说明里的「验收」，把这几条命令的原始输出原样贴给我：

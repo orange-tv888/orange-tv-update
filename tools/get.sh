@@ -12,16 +12,21 @@
 # Needs curl, unzip and python3 (TCL only). If adb is not installed, Google's platform-tools are
 # downloaded into ~/.cache/orange and used from there.
 #
-# There is no Orange download site any more: the scripts come from this repository, with jsDelivr's
-# copy as the fallback for when raw.githubusercontent.com is slow or blocked (same pair install.sh
-# uses for the APK). ORANGE_REF=<branch> reads another branch; AERIAL_REF is still read for scripts
-# written before the rename.
+# There is no Orange download site any more: the scripts come from this repository. When
+# raw.githubusercontent.com is slow or blocked, try the two GitHub proxies below (the same set
+# install.sh uses for the APK). jsDelivr was the old fallback but is unreachable in China
+# (2026-11-11: HTTP 000 / SSL_ERROR_SYSCALL), so do not put it back.
+# ORANGE_REF=<branch> reads another branch; AERIAL_REF is still read for older scripts.
 set -euo pipefail
 : "${TV:?set TV to the TV IP address, e.g. curl ... | TV=192.168.1.20 bash}"
 REPO=orange-tv888/orange-tv-update
 REF="${ORANGE_REF:-${AERIAL_REF:-main}}"
 RAW="https://raw.githubusercontent.com/$REPO/$REF"
-CDN="https://cdn.jsdelivr.net/gh/$REPO@$REF"
+MIRRORS=(
+  "$RAW"
+  "https://ghfast.top/$RAW"
+  "https://ghproxy.net/$RAW"
+)
 
 if ! command -v adb >/dev/null; then
   case "$(uname -s)" in
@@ -44,8 +49,16 @@ dir=$(mktemp -d)
 trap 'rm -rf "$dir"' EXIT
 mkdir -p "$dir/tools"
 for f in install.sh restore.sh tcast-push.py; do
-  curl -fsSL --connect-timeout 10 "$RAW/tools/$f" -o "$dir/tools/$f" \
-    || curl -fsSL --connect-timeout 10 "$CDN/tools/$f" -o "$dir/tools/$f"
+  ok=0
+  for base in "${MIRRORS[@]}"; do
+    if curl -fsSL --connect-timeout 8 "$base/tools/$f" -o "$dir/tools/$f" \
+       && [ -s "$dir/tools/$f" ]; then ok=1; break; fi
+  done
+  [ "$ok" = 1 ] || { echo "Could not download tools/$f" >&2; exit 1; }
+  # A proxy can return 200 with a truncated body; never run a half-downloaded script.
+  case "$f" in
+    *.sh) bash -n "$dir/tools/$f" || { echo "Incomplete script: tools/$f" >&2; exit 1; } ;;
+  esac
 done
 chmod +x "$dir/tools/"*.sh "$dir/tools/tcast-push.py"
 

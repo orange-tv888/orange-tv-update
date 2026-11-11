@@ -220,16 +220,24 @@ build() {
     echo "app/build/outputs/apk/$flavor/release/app-$flavor-release.apk"
   else
     local out="${TMPDIR:-/tmp}/orange-$flavor.apk" url
-    # Orange publishes one APK, update/orange.apk (the standard build). There is no Release page
-    # and no guard build to download, so those two say so instead of pulling a stranger's launcher.
+    # Orange publishes one APK, update/orange.apk (the standard build). There is no downloadable
+    # guard build, so that flavor says so instead of pulling a stranger's launcher. A Release page
+    # does exist (GitHub Actions publishes it), but this path is the permanent latest APK link.
     if [ "$flavor" != standard ]; then
       echo "No published $flavor build. Run again with BUILD=1 to build it from this checkout, or APK_FILE=<apk>." >&2
       return 1
     fi
+    # jsDelivr was the old second choice; it is unreachable in China (HTTP 000, 2026-11-11).
     for url in "https://raw.githubusercontent.com/$REPO/main/update/orange.apk" \
-               "https://cdn.jsdelivr.net/gh/$REPO@main/update/orange.apk"; do
+               "https://ghfast.top/https://raw.githubusercontent.com/$REPO/main/update/orange.apk" \
+               "https://ghproxy.net/https://raw.githubusercontent.com/$REPO/main/update/orange.apk"; do
       echo "Downloading $url" >&2
-      if curl -fL --progress-bar --connect-timeout 10 -o "$out" "$url"; then echo "$out"; return; fi
+      # A slow proxy can answer 200 and drop the connection halfway, leaving a truncated APK
+      # that curl still calls a success. An APK is a ZIP, so unzip -tq catches that before adb.
+      if curl -fL --progress-bar --connect-timeout 10 -o "$out" "$url" \
+         && unzip -tq "$out" >/dev/null 2>&1; then echo "$out"; return; fi
+      echo "Incomplete or invalid APK from $url; trying the next mirror" >&2
+      rm -f "$out"
     done
     echo "Could not download orange.apk" >&2
     return 1

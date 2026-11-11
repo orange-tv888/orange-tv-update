@@ -99,7 +99,7 @@ Run these in PowerShell, with the adb from step 1. Everything inside `adb shell 
    ```powershell
    curl.exe -fL -o orange.apk https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk
    ```
-   If that fails, swap `raw.githubusercontent.com/orange-tv888/orange-tv-update/main` for `cdn.jsdelivr.net/gh/orange-tv888/orange-tv-update@main` and try again.
+   If that fails, prefix the whole URL with `https://ghfast.top/` and try again; `https://ghproxy.net/` also works but is slower. Do not use jsDelivr — it is unreachable (tested 2026-11-11).
 
 2. Install it: `adb install -r orange.apk`. Go on when it prints `Success`. If it fails:
    - With **`INSTALL_FAILED_VERIFICATION_FAILURE`**: this is a TCL, which refuses every adb install. Follow "TCL" below, then continue from item 3.

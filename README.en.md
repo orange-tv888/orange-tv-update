@@ -86,7 +86,7 @@ TV IP address: <TV-IP>
 Keep ADB debugging on: yes
 
 The install guide is here: https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/en/agent.md
-(If you can't open it, use https://cdn.jsdelivr.net/gh/orange-tv888/orange-tv-update@main/site/en/agent.md)
+(If you can't open it, use https://ghfast.top/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/site/en/agent.md)
 
 Read the whole guide before you start. Then run the commands yourself on my computer; don't just tell me the steps. Tell me when I need to do something on the TV.
 At the end, paste the raw output of these commands from the "Check" section, not just "it worked":
@@ -291,7 +291,7 @@ Needs JDK 17 and Android SDK 36.
 BUILD=1 KEEP_ADB=1 TV=<TV-IP> tools/install.sh
 ```
 
-Per-device notes are in [docs/devices/](docs/devices/) and the Lite build in [LITE.md](docs/LITE.md). Source and developer docs are not public.(docs/devices/) for notes on each TV.
+Per-device notes are in [docs/devices/](docs/devices/) and the Lite build in [LITE.md](docs/LITE.md). Source and developer docs are not public.
 
 ## License
 

@@ -99,8 +99,9 @@ curl -fsSL https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/
    ```powershell
    curl.exe -fL -o orange.apk https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk
    ```
-   这个地址打不开时，把 `raw.githubusercontent.com` 换成 `cdn.jsdelivr.net/gh` 再试一次：
-   `https://cdn.jsdelivr.net/gh/orange-tv888/orange-tv-update@main/update/orange.apk`。
+   这个地址打不开时，在整个地址前面加 `https://ghfast.top/` 再试一次：
+   `https://ghfast.top/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk`。
+   还不行就把前缀换成 `https://ghproxy.net/`（慢一些）。不要用 jsDelivr，实测连不上。
 
 2. 安装：`adb install -r orange.apk`，输出 `Success` 继续。失败时：
    - 输出里有 **`INSTALL_FAILED_VERIFICATION_FAILURE`**：这是 TCL，它拒绝一切 adb 安装。按下面「TCL 安装」处理，装好后从第 3 条继续。
