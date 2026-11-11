@@ -1,0 +1,10 @@
+{
+  "version": "26.5.5",
+  "apk": "https://ghproxy.net/https://raw.githubusercontent.com/orange-tv888/orange--tv/main/update/orange.apk",
+  "notes": [
+    "儿童模式时长跨应用连续计算：看剧、切应用、熄屏都算",
+    "到时限自动锁定电视，需家长密码解锁；睡眠定时与每周时段同样生效",
+    "锁定页与密码页双击 HOME 不再弹出系统任务面板",
+    "系统设置与支持作者免密，首页菜单键直达 Orange 菜单"
+  ]
+}

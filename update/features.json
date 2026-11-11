@@ -1,0 +1,8 @@
+{
+  "schema": 1,
+  "material_styles": ["classic", "frosted", "liquid"],
+  "dynamic_wallpaper": true,
+  "quiz_unlock": false,
+  "downtime": false,
+  "rollout": { "enabled": false, "batch": 0 }
+}
