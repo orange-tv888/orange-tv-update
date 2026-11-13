@@ -1,9 +1,9 @@
 {
-  "version": "26.5.6",
+  "version": "26.5.7",
   "apk": "https://ghproxy.net/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk",
   "notes": [
-    "液态玻璃材质全面收口：大时钟、支持作者、个性化、儿童与家长四页与菜单同一通透度",
-    "个性化抽屉与儿童空间不再裁切壁纸，下滑透出桌面原图",
-    "关于页显示构建号，报问题时一眼定位到具体某次构建"
+    "控件模板化：各页面共用同一套开关 / 芯片 / 步进器 / 焦点样式，增减功能不再重复造轮子",
+    "开关切换改用 Apple HIG 临界阻尼弹簧动效，手感更跟手",
+    "手机配置页新增「星期」开关，与电视端统一为 App 强调橙"
   ]
 }
