@@ -1,9 +1,9 @@
 {
-  "version": "26.5.7",
+  "version": "26.5.8",
   "apk": "https://ghproxy.net/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk",
   "notes": [
-    "控件模板化：各页面共用同一套开关 / 芯片 / 步进器 / 焦点样式，增减功能不再重复造轮子",
-    "开关切换改用 Apple HIG 临界阻尼弹簧动效，手感更跟手",
-    "手机配置页新增「星期」开关，与电视端统一为 App 强调橙"
+    "支持作者页改成两杯美式，点哪杯出哪个收款码",
+    "杯图抠底透明浮起，加白色描边，不再有白框",
+    "焦点上浮加底部柔光，左右切杯，返回收回"
   ]
 }
