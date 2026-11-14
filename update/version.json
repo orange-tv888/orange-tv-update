@@ -1,10 +1,10 @@
 {
-  "version": "26.5.9",
+  "version": "26.6.0",
   "apk": "https://ghproxy.net/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk",
   "notes": [
-    "开机直接进桌面，去掉开机动画和开机声",
-    "壁纸页新增在线壁纸与动态壁纸",
-    "位置入口挪到「系统」，天气按省选",
-    "菜单进出更顺滑，焦点不再跳格"
+    "面板玻璃后面不再透出底部背板",
+    "「厚实」改为完全不透，所有页面与桌面同步",
+    "返回上级回到刚才那一行，不再跳到最上面",
+    "动态壁纸选项上移不再卡住"
   ]
 }
