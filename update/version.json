@@ -1,9 +1,10 @@
 {
-  "version": "26.5.8",
+  "version": "26.5.9",
   "apk": "https://ghproxy.net/https://raw.githubusercontent.com/orange-tv888/orange-tv-update/main/update/orange.apk",
   "notes": [
-    "支持作者页改成两杯美式，点哪杯出哪个收款码",
-    "杯图抠底透明浮起，加白色描边，不再有白框",
-    "焦点上浮加底部柔光，左右切杯，返回收回"
+    "开机直接进桌面，去掉开机动画和开机声",
+    "壁纸页新增在线壁纸与动态壁纸",
+    "位置入口挪到「系统」，天气按省选",
+    "菜单进出更顺滑，焦点不再跳格"
   ]
 }
